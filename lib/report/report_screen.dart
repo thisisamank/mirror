@@ -90,6 +90,7 @@ class ReportScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+          SizedBox(height: 8),
           Container(
             child: _getEmojiCard(
               _facialEmoji,
