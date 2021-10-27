@@ -18,7 +18,7 @@ class ReportScreen extends StatelessWidget {
   Future<Results> fetchData() async {
     final json = await rootBundle.loadString('assets/output.json');
     return Future.delayed(
-        Duration(seconds: 10), () => Results.fromRawJson(json));
+        Duration(seconds: 60), () => Results.fromRawJson(json));
   }
 
   _getEmojiCard(List<String> emojis, int selected, String title) {

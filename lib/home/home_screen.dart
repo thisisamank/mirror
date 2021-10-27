@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:camera/camera.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import 'package:mirror/shared/widgets/mirror.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  Widget _getFloatingButton() {
+  Widget _getFloatingButton(context) {
     return Container(
       width: 150,
       height: 70,
@@ -39,7 +40,10 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              final camera = await availableCameras();
+              AutoRouter.of(context).push(CameraAppRoute(cameras: camera));
+            },
             icon: Icon(
               Icons.camera,
               color: Colors.white,
@@ -106,7 +110,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: _getFloatingButton(),
+        floatingActionButton: _getFloatingButton(context),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: SafeArea(
           child: Column(
