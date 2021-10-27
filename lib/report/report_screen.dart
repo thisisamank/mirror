@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -17,8 +20,11 @@ class ReportScreen extends StatelessWidget {
 
   Future<Results> fetchData() async {
     final json = await rootBundle.loadString('assets/output.json');
-    return Future.delayed(
-        Duration(seconds: 60), () => Results.fromRawJson(json));
+    final jsonArray = jsonDecode(json);
+    final List<Results> resultList =
+        jsonArray.map<Results>((json) => Results.fromJson(json)).toList();
+    final random = Random().nextInt(resultList.length);
+    return Future.delayed(Duration(seconds: 0), () => resultList[random]);
   }
 
   _getEmojiCard(List<String> emojis, int selected, String title) {
