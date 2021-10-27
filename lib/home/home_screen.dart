@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mirror/constants/colors.dart';
+import 'package:mirror/route/router.gr.dart';
 import 'package:mirror/shared/widgets/mirror.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -129,15 +131,20 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: _getCard(
-                  "Start your new Video",
-                  "Begin your new video analysis via uploading a video or by camera.",
-                  Icon(
-                    Icons.video_call_outlined,
-                    color: Colors.white,
-                    size: 40,
+                child: GestureDetector(
+                  onTap: () {
+                    AutoRouter.of(context).push(ReportScreenRoute());
+                  },
+                  child: _getCard(
+                    "Start your new Video",
+                    "Begin your new video analysis via uploading a video or by camera.",
+                    Icon(
+                      Icons.video_call_outlined,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                    MColor.lightOrange,
                   ),
-                  MColor.lightOrange,
                 ),
               ),
             ],
@@ -154,7 +161,10 @@ class MirrorAppBar extends StatelessWidget {
     return Row(
       children: [
         SizedBox(width: 12),
-        MirrorText(size: 40),
+        MirrorText(
+          size: 40,
+          text: title,
+        ),
         Spacer(),
         Container(
           padding: EdgeInsets.all(16),
