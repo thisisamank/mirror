@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mirror/constants/colors.dart';
 import 'package:mirror/home/home_screen.dart';
 import 'package:mirror/models/report.dart';
@@ -126,6 +127,41 @@ class ReportScreen extends StatelessWidget {
             child: _getCard(
               result.frequentlyUsed,
               'Frequently used Words',
+            ),
+          ),
+          SizedBox(height: 16),
+          Container(
+            padding: EdgeInsets.all(16),
+            width: 300,
+            decoration: BoxDecoration(
+              color: MColor.pink,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  "Gramatical Errors",
+                  style: GoogleFonts.roboto(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Container(
+                    padding: EdgeInsets.all(16),
+                    width: 55,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: MirrorText(
+                        text: result.gramErrors.toString(),
+                        size: 14,
+                      ),
+                    ))
+              ],
             ),
           ),
           SizedBox(height: 16),
